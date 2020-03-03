@@ -11,20 +11,116 @@ super();
 
 this.state={
 
-DatosHistoria:[]
+DatosCartas:[]
 
 }
 
-
+this.volverApedir=this.volverApedir.bind(this);
 }
 
 
-obtenerUsuario(){
+obtenerUsuario=()=>{
 
 
 return document.getElementById('USUARIO').className;
 
 }
+
+
+
+volverApedir(){
+
+axios.post("http://localhost:8080/Apirest/index.php/Peticion/MISHISTORIAS?format=json",{Usuario:document.getElementById('USUARIO').className})
+  .then((response) => {
+    //RESPUESTA SI TODO SALE BIEN
+
+
+this.setState({
+
+
+DatosCartas:response.data
+
+
+})
+
+
+
+
+  })
+  .catch((error) => {
+//RESPUESTA SI HAY ALGUN ERROR
+alert("PROBLEMA");
+    console.log(error);
+    //alert(error);
+  });
+
+
+
+}
+
+
+
+
+EliminarHistoria=(e)=>{
+
+var idH=e.target.id;
+
+axios.post("http://localhost:8080/Apirest/index.php/Peticion/ELIMINARHISTORIA",{Numero:idH}).then((response) => {
+    //RESPUESTA SI TODO SALE BIEN
+this.volverApedir();
+
+
+  })
+  .catch((error) => {
+//RESPUESTA SI HAY ALGUN ERROR
+
+    console.log(error);
+    //alert(error);
+  });
+
+
+
+
+
+
+
+}
+
+
+  componentDidMount(){
+axios.post("http://localhost:8080/Apirest/index.php/Peticion/MISHISTORIAS?format=json",{Usuario:document.getElementById('USUARIO').className})
+  .then((response) => {
+    //RESPUESTA SI TODO SALE BIEN
+
+
+this.setState({
+
+
+DatosCartas:response.data
+
+
+})
+
+
+console.log(this.state.DatosCartas);
+
+  })
+  .catch((error) => {
+//RESPUESTA SI HAY ALGUN ERROR
+
+    console.log(error);
+    //alert(error);
+  });
+
+
+
+
+
+} 
+
+
+
+
 
 
 
@@ -35,23 +131,40 @@ return document.getElementById('USUARIO').className;
  return (
       <div className="container ">
 
-<div className="row p-4">
+<div className="row p-4 rounded">
 
-<div className="col-4 bg-warning p-4">
 
-<div class="card" >
+{this.state.DatosCartas.map((Elemento)=>{
+
+
+return(
+
+<div className="col-4  p-2 rounded ">
+
+<div class="card bg-white border border-warning ">
   <div class="card-body">
-    <h5 class="card-title font-weight-bold">Titulo Carta</h5>
+    <h5 class="card-title font-weight-bold">{Elemento.TituloHistoria}</h5>
     <h6 class="card-subtitle mb-2 font-weight-bold">Descripcion Breve</h6>
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-    <a href="#" class="card-link btn bg-danger">Eliminar</a>
+    <p class="card-text">{Elemento.DescripcionBreve}</p>
+    <button href="#" class="card-link btn bg-danger" id={Elemento.idHistoria} onClick={this.EliminarHistoria}>Eliminar</button>
 
   </div>
 
-</div>
-
 
 </div>
+
+</div>
+
+  )
+
+
+
+})}
+
+
+
+
+
 
 
 

@@ -9,7 +9,7 @@ class BarraPrincipal extends Component {
   render() {
     return (
       <div className="">
-     <nav class="navbar navbar-expand-lg navbar-light bg-primary">
+     <nav class="navbar navbar-expand-lg navbar-light bg-primary fixed-top">
  
    <Link  className="navbar-brand text-white font-weight-bold" to="./">Principal</Link>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -27,16 +27,10 @@ class BarraPrincipal extends Component {
         <Link  className="nav-link text-white font-weight-bold" to="./MiPerfil">Mi Perfil</Link>
       </li>
       <li class="nav-item">
-        <a class="nav-link text-white font-weight-bold" href="#" tabindex="-1" aria-disabled="true">Salir</a>
+       <Link  className="nav-link text-white font-weight-bold" to="./Buscar">Buscar</Link>
       </li>
     </ul>
   </div>
-
- <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="search" placeholder="Bucar Historias" aria-label="" />
-      <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Buscar</button>
-    </form>
-
 
 </nav>
     

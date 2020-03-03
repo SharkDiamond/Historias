@@ -67,7 +67,7 @@ console.log(this.state.TH);
  
 <div className="row">
 
-<div className="col-12 bg-success rounded p-3">
+<div className="col-12 bg-success rounded">
 
 <ol>
 
@@ -75,7 +75,7 @@ console.log(this.state.TH);
 
 this.state.TH.map((elemento)=>{
 
-return <li className="display-1 font-weight-bold text-white">{elemento.TituloHistoria}</li>
+return <li className="display-3 font-weight-bold text-white">{elemento.TituloHistoria}</li>
 
 
 })
