@@ -71,16 +71,16 @@ alert("PROBLEMA");
 
 <div className="row ">
 
-<div className="col-12 bg-primary p-4 rounded">
+<div className="col-12 fondocontenedores p-4 rounded">
 
 <form onSubmit={this.Envia}>
-<h1 className="text-white font-weight-bold">Titulo</h1>
+<h1 className="letrasoscuras font-weight-bold">Titulo</h1>
 <input type="text" name="Titulo" className="mb-2" required onChange={this.obtenData} placeholder="Titulo"/>
 <br/>
-<h1 className="text-white font-weight-bold">Breve Descripcion</h1>
+<h1 className="letrasoscuras font-weight-bold">Breve Descripcion</h1>
 <input type="text" name="Descripcion" className="mb-2" required onChange={this.obtenData} placeholder="Breve Descripcion"/>
 <br/>
-<h1 className="text-white font-weight-bold">Contenido</h1>
+<h1 className="letrasoscuras font-weight-bold">Contenido</h1>
 <textarea name="Texto" rows="12" cols="80" className="mb-2" required onChange={this.obtenData} placeholder="Describe tu historia"></textarea>
 
 <br/>

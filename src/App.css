@@ -34,5 +34,17 @@ background: linear-gradient(to right, #243B55, #141E30); /* W3C, IE 10+/ Edge, F
 
 }
 
+.letrasoscuras{
+
+color:#141E30;
+}
+
+
+.fondocontenedores{
+
+
+  background-color: #00b7d4;
+}
+
 
 

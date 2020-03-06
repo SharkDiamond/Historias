@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from "axios";
-
+import './App.css';
 
 class MisHistorias extends Component {
  
@@ -61,11 +61,11 @@ alert("PROBLEMA");
 
 
 
-EliminarHistoria=(e)=>{
+EliminarHistoria= async (e)=>{
 
 var idH=e.target.id;
-
-axios.post("http://localhost:8080/Apirest/index.php/Peticion/ELIMINARHISTORIA",{Numero:idH}).then((response) => {
+console.log(idH);
+ await axios.post("http://localhost:8080/Apirest/index.php/Peticion/ELIMINARHISTORIA",{n:idH}).then((response) => {
     //RESPUESTA SI TODO SALE BIEN
 this.volverApedir();
 
@@ -134,15 +134,15 @@ console.log(this.state.DatosCartas);
 <div className="row p-4 rounded">
 
 
-{this.state.DatosCartas.map((Elemento)=>{
+{this.state.DatosCartas.map((Elemento,index)=>{
 
 
 return(
 
 <div className="col-4  p-2 rounded ">
 
-<div class="card bg-white border border-warning ">
-  <div class="card-body">
+<div class="card fondocontenedores border border-dark " key={Elemento.idHistoria}>
+  <div class="card-body fondocontenedores">
     <h5 class="card-title font-weight-bold">{Elemento.TituloHistoria}</h5>
     <h6 class="card-subtitle mb-2 font-weight-bold">Descripcion Breve</h6>
     <p class="card-text">{Elemento.DescripcionBreve}</p>
