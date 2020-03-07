@@ -6,12 +6,23 @@ import CrearHistoria from "./CrearHistoria.js";
 import MiPerfil from "./MiPerfil.js";
 import Principal from "./Principal.js";
 class BarraPrincipal extends Component {
+  
+
+salir=()=>{
+
+localStorage.removeItem("Usuario");
+
+
+}
+
+
+
   render() {
     return (
       <div className="">
-     <nav class="navbar navbar-expand-lg navbar-light fondocontenedores fixed-top">
+     <nav class="navbar navbar-expand-lg navbar-light fondocontenedores fixed-top border-bottom border-dark">
  
-   <Link  className="navbar-brand letrasoscuras font-weight-bold" to="./">Principal</Link>
+   <Link  className="navbar-brand letrasoscuras font-weight-bold" to="./Principal">Principal</Link>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -29,6 +40,10 @@ class BarraPrincipal extends Component {
       <li class="nav-item active">
        <Link  className="nav-link letrasoscuras font-weight-bold" to="./Buscar">Buscar</Link>
       </li>
+   <li class="nav-item active">
+       <Link  className="nav-link letrasoscuras font-weight-bold" to="./" onClick={this.salir}>Salir</Link>
+      </li>
+
     </ul>
   </div>
 

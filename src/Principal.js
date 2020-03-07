@@ -62,9 +62,23 @@ console.log(this.state.TH);
 
 
   render() {
+
+if (localStorage.getItem("Usuario")==undefined) {
+return (
+      <div className="App">
+
+<p className="text-danger display-1">NO INICIO SESION</p>
+
+ </div>
+
+)
+
+}
+
+ if (true) {}   
     return (
       <div className="container">
- 
+  <BarraPrincipal />
 <div className="row">
 
 <div className="col-12 fondocontenedores rounded">

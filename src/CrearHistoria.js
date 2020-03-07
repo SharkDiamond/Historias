@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from "axios";
-
+import BarraPrincipal from "./BarraPrincipal.js";
 
 class CrearHistoria extends Component {
  
@@ -42,11 +42,11 @@ Envia=(e)=>{
 
 e.preventDefault();
 
-axios.post("http://localhost:8080/Apirest/index.php/Peticion/CREARHISTORIA",{UsuarioCreador:document.getElementById('USUARIO').className,
+axios.post("http://localhost:8080/Apirest/index.php/Peticion/CREARHISTORIA",{UsuarioCreador:localStorage.getItem("Usuario"),
 TituloHistoria:this.state.Titulo,BreveDescripcion:this.state.Descripcion,Texto:this.state.Texto}).then((response) => {
     //RESPUESTA SI TODO SALE BIEN
+alert("Historia Creada");
 
-console.log(response);
 
 
 
@@ -66,9 +66,22 @@ alert("PROBLEMA");
 
 
   render() {
+
+if (localStorage.getItem("Usuario")==undefined) {
+return (
+      <div className="App">
+
+<p className="text-danger display-1">NO INICIO SESION</p>
+
+ </div>
+
+)
+
+}
+
     return (
       <div className="container">
-
+<BarraPrincipal/>
 <div className="row ">
 
 <div className="col-12 fondocontenedores p-4 rounded">

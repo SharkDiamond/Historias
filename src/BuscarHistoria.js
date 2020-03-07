@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import './App.css';
 
 import axios from "axios";
-
+import BarraPrincipal from "./BarraPrincipal.js";
 
 class BuscarHistoria extends Component {
  
@@ -59,17 +59,18 @@ MostrarHistoria:false
 
 EnviarComentario=(e)=>{
 
-e.preventDefault();
+
 
 axios.post("http://localhost:8080/Apirest/index.php/Peticion/CREARCOMENTARIO",{Numero:this.state.idh,
-usuario:document.getElementById('USUARIO').className,contenido:this.state.contenido}).then((response) => {
+usuario:localStorage.getItem("Usuario"),contenido:this.state.contenido}).then((response) => {
     //RESPUESTA SI TODO SALE BIEN
 
 this.setState({
 
 
 conmentariosh:response.data,
-MostrarHistoria:true
+MostrarHistoria:true,
+contenido:""
 
 })
 
@@ -248,7 +249,7 @@ alert("PROBLEMA");
  return (
 
       <div className="container ">
-
+<BarraPrincipal />
 <div className="row fondocontenedores p-3 ">
 <div className="col-12 mb-4 ">
  <form class="form-inline  align-self-center"  onSubmit={this.Buscar}>
@@ -287,14 +288,24 @@ return (
 
   	}
    
+if (localStorage.getItem("Usuario")==undefined) {
+return (
+      <div className="App">
 
+<p className="text-danger display-1">NO INICIO SESION</p>
+
+ </div>
+
+)
+
+}
 
 if (this.state.MostrarHistoria==true) {
 
 return (
 
  <div className="container">
-
+<BarraPrincipal />
 <div className="row fondocontenedores justify-content-center rounded">
 
 
@@ -325,10 +336,11 @@ this.state.comentariosh.map((datos)=>{
 return(
 
 
-<div className="mt-3 mb-3 p-2 fondo rounded-pill">
+<div className="mt-3 mb-3 p-4 fondo rounded-pill">
 
 <p className="text-justify font-weight-bold text-white">{datos.DescripcionComentario}</p>
 
+<p className="text-justify font-weight-bold text-white"><i>{datos.UsuarioC}</i></p>
 
 </div>
 
@@ -346,7 +358,7 @@ return(
 
 
 <form className="mt-3" onSubmit={this.EnviarComentario}>
-<textarea rows="8" cols="70" required placeholder="Comentar" id="contenido" onChange={this.AsignaValorEstado}></textarea>
+<textarea rows="8" cols="70" required placeholder="Comentar" id="contenido" value={this.state.contenido} onChange={this.AsignaValorEstado}></textarea>
 <br/>
 <br/>
 <button className="btn btn-success">Enviar</button>

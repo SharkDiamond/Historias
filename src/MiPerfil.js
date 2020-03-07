@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from "axios";
-
+import BarraPrincipal from "./BarraPrincipal.js";
 class MiPerfil extends Component {
  
 
@@ -19,7 +19,7 @@ DatosUsuario:[]
 
 
  componentDidMount(){
-axios.post("http://localhost:8080/Apirest/index.php/Peticion/MIPERFIL",{Usuario:document.getElementById('USUARIO').className})
+axios.post("http://localhost:8080/Apirest/index.php/Peticion/MIPERFIL",{Usuario:localStorage.getItem("Usuario")})
   .then((response) => {
     //RESPUESTA SI TODO SALE BIEN
 
@@ -55,9 +55,23 @@ DatosUsuario:response.data
 
 
   render() {
+
+if (localStorage.getItem("Usuario")==undefined) {
+return (
+      <div className="App">
+
+<p className="text-danger display-1">NO INICIO SESION</p>
+
+ </div>
+
+)
+
+}
+
+
     return (
       <div className="container" >
-  
+  <BarraPrincipal />
 <div className="row d-flex align-items-center">
 
 

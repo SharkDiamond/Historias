@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from "axios";
 import './App.css';
-
+import BarraPrincipal from "./BarraPrincipal.js";
 class MisHistorias extends Component {
  
 
@@ -30,7 +30,7 @@ return document.getElementById('USUARIO').className;
 
 volverApedir(){
 
-axios.post("http://localhost:8080/Apirest/index.php/Peticion/MISHISTORIAS?format=json",{Usuario:document.getElementById('USUARIO').className})
+axios.post("http://localhost:8080/Apirest/index.php/Peticion/MISHISTORIAS?format=json",{Usuario:localStorage.getItem("Usuario")})
   .then((response) => {
     //RESPUESTA SI TODO SALE BIEN
 
@@ -88,7 +88,7 @@ this.volverApedir();
 
 
   componentDidMount(){
-axios.post("http://localhost:8080/Apirest/index.php/Peticion/MISHISTORIAS?format=json",{Usuario:document.getElementById('USUARIO').className})
+axios.post("http://localhost:8080/Apirest/index.php/Peticion/MISHISTORIAS?format=json",{Usuario:localStorage.getItem("Usuario")})
   .then((response) => {
     //RESPUESTA SI TODO SALE BIEN
 
@@ -126,11 +126,21 @@ console.log(this.state.DatosCartas);
 
   render() {
     
+if (localStorage.getItem("Usuario")==undefined) {
+return (
+      <div className="App">
 
+<p className="text-danger display-1">NO INICIO SESION</p>
+
+ </div>
+
+)
+
+}
 
  return (
       <div className="container ">
-
+<BarraPrincipal />
 <div className="row p-4 rounded">
 
 
