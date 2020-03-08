@@ -33,7 +33,7 @@ CREATE TABLE `Comentarios` (
   KEY `Nhistoria` (`Nhistoria`),
   CONSTRAINT `Comentarios_ibfk_1` FOREIGN KEY (`UsuarioC`) REFERENCES `Usuarios` (`NombreUsuario`),
   CONSTRAINT `Comentarios_ibfk_2` FOREIGN KEY (`Nhistoria`) REFERENCES `historia` (`idHistoria`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=38 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -42,6 +42,7 @@ CREATE TABLE `Comentarios` (
 
 LOCK TABLES `Comentarios` WRITE;
 /*!40000 ALTER TABLE `Comentarios` DISABLE KEYS */;
+INSERT INTO `Comentarios` VALUES (36,'Marico que loco enserio?','Franco23','2020-03-08',19),(37,'Verga que arrecho seguro fue por la luz no?','aron23','2020-03-08',19);
 /*!40000 ALTER TABLE `Comentarios` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -54,6 +55,7 @@ DROP TABLE IF EXISTS `Usuarios`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `Usuarios` (
   `NombreUsuario` varchar(30) NOT NULL,
+  `Contraseña` varchar(8) NOT NULL,
   `Nombre` varchar(40) NOT NULL,
   `Apellido` varchar(40) NOT NULL,
   `Edad` int(11) NOT NULL,
@@ -68,7 +70,7 @@ CREATE TABLE `Usuarios` (
 
 LOCK TABLES `Usuarios` WRITE;
 /*!40000 ALTER TABLE `Usuarios` DISABLE KEYS */;
-INSERT INTO `Usuarios` VALUES ('aron23','Franco','Angel',18,'dfdfdf');
+INSERT INTO `Usuarios` VALUES ('aron23','feo123','Franco','Angel',18,'dfdfdf'),('Franco23','wwwaaa12','Franco','Angel',20,'aron23@gmail.com');
 /*!40000 ALTER TABLE `Usuarios` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -89,7 +91,7 @@ CREATE TABLE `historia` (
   PRIMARY KEY (`idHistoria`),
   KEY `UsuarioCreador` (`UsuarioCreador`),
   CONSTRAINT `historia_ibfk_1` FOREIGN KEY (`UsuarioCreador`) REFERENCES `Usuarios` (`NombreUsuario`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -98,7 +100,7 @@ CREATE TABLE `historia` (
 
 LOCK TABLES `historia` WRITE;
 /*!40000 ALTER TABLE `historia` DISABLE KEYS */;
-INSERT INTO `historia` VALUES (2,'Los Romanticos','Amor y filosofia','dos seres que se aman sin sesar','2020-03-02','Aron23');
+INSERT INTO `historia` VALUES (19,'Aqui Con Franco','Que LOco','Tuvimos que venir a Ciudad Varina','2020-03-08','Franco23');
 /*!40000 ALTER TABLE `historia` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -111,4 +113,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-03-02 19:15:52
+-- Dump completed on 2020-03-08 17:55:36
