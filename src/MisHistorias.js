@@ -8,7 +8,7 @@ class MisHistorias extends Component {
 constructor(){
 super();
 
-
+//ESTADO
 this.state={
 
 DatosCartas:[]
